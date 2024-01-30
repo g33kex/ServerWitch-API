@@ -1,7 +1,7 @@
 Server Witch API
 ================
 
-![Server Witch logo](serverwitch.png)
+![Server Witch logo](logo.png)
 
 This repository contains the necessary files needed to self-host the Server Witch API to connect the Server Witch client to the Server Witch custom GPT. You can find more information about the Server Witch client [here](https://github.com/g33kex/ServerWitch). 
 
