@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "serverwitch-api"
+version = "0.2.0"
+description = ""
+authors = ["Vi Retault <g33kex@pm.me>", "Spiderweak <spiderweak@a-bernard.fr>"]
+readme = "README.md"
+packages = [{include = "serverwitch_api", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+quart = "^0.19.4"
+quart-schema = "^0.18.0"
+hypercorn = "^0.15.0"
+uvicorn = "^0.24.0.post1"
+
+[tool.poetry.scripts]
+start = "serverwitch_api:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

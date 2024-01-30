@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Server Witch API
+  description: Execute commands, read files and write files on the user's server
+  version: 0.1.0
+servers:
+  - url: https://serverwitch.dev
+paths:
+  /command:
+    post:
+      operationId: post_send_command
+      summary: Execute a command on the server.
+      x-openai-isConsequential: false
+      requestBody:
+        description: Request body containing the command and session ID.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandRequest'
+      responses:
+        '200':
+          description: Command executed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandResponse'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /read:
+    post:
+      operationId: post_read
+      summary: Read a file on the server.
+      x-openai-isConsequential: false
+      requestBody:
+        description: Request body containing the file path and session ID.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadRequest'
+      responses:
+        '200':
+          description: File read successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadResponse'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /write:
+    post:
+      operationId: post_write
+      summary: Write a file on the server.
+      x-openai-isConsequential: false
+      requestBody:
+        description: Request body containing the file path, new content and session ID.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WriteRequest'
+      responses:
+        '200':
+          description: File written successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteResponse'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /status:
+    get:
+      operationId: get_status
+      summary: Get the status of the server.
+      x-openai-isConsequential: false
+      responses:
+        '200':
+          description: Status of the server.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+components:
+  schemas:
+    CommandRequest:
+      type: object
+      required:
+        - session_id
+        - command
+      properties:
+        command:
+          type: string
+          description: Command to execute on the server.
+        session_id:
+          type: string
+          description: Session ID.
+    ReadRequest:
+      type: object
+      required:
+        - session_id
+        - path
+      properties:
+        path:
+          type: string
+          description: Absolute path of the file to be read.
+        session_id:
+          type: string
+          description: Session ID.
+    WriteRequest:
+      type: object
+      required:
+        - session_id
+        - path
+        - content
+      properties:
+        path:
+          type: string
+          description: Absolute path of the file to be written.
+        content:
+          type: string
+          description: New content of the file.
+        session_id:
+          type: string
+          description: Session ID.
+    CommandResponse:
+      type: object
+      required:
+        - return_code
+        - stdout
+        - stderr
+      properties:
+        return_code:
+          type: integer
+          description: Return code of the executed command.
+        stdout:
+          type: string
+          description: Standard output of the executed command.
+        stderr:
+          type: string
+          description: Standard error of the executed command.
+    ReadResponse:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          type: string
+          description: Content of the file.
+    WriteResponse:
+      type: object
+      required:
+        - size
+      properties:
+        size:
+          type: int
+          description: Number of characters written to the file.
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message detailing what went wrong.
+    StatusResponse:
+      type: object
+      required:
+        - status
+        - version
+      properties:
+        status:
+          type: string
+          description: Current status of the server.
+        version:
+          type: string
+          description: Version of the server software.
