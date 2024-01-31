@@ -7,7 +7,7 @@ Server Witch API
 
 This repository contains the necessary files needed to self-host the Server Witch API to connect the Server Witch client to the Server Witch custom GPT. You can find more information about the Server Witch client [here](https://github.com/g33kex/ServerWitch). 
 
-## Deployement
+## Deployment
 
 This server is built in python with [Quart](https://quart.palletsprojects.com/en/latest/) and [Hypercorn](https://hypercorn.readthedocs.io/en/latest/index.html), and can be deployed with docker.
 
@@ -42,7 +42,7 @@ If you deploy your own Server Witch API, you will also need your own custom GPT 
 
 Note that it is also possible to use any other LLM that can send requests based on the provided OpenAPI specification.
 
-## Building
+## Development
 
 This project is built with poetry:
 ```
