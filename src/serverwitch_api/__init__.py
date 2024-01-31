@@ -94,7 +94,7 @@ class ErrorResponse:
 async def _receive(session_id) -> None:
     while True:
         response = await websocket.receive_as(ClientResponse) # type: ignore
-        app.logger.info(f"{websocket.remote_addr} - RESPONSE - {session_id} {json.dumps(asdict(response))}")
+        app.logger.info(f"{websocket.remote_addr} - RESPONSE - {session_id} - {json.dumps(asdict(response))}")
         await broker.receive_response(session_id, response)
 
 """Fetch the status of the API"""
@@ -116,7 +116,7 @@ async def session_handler():
     try:
         task = asyncio.ensure_future(_receive(session_id))
         async for request in broker.subscribe(session_id):
-            app.logger.info(f"{websocket.remote_addr} - REQUEST - {session_id} {json.dumps(asdict(request))}")
+            app.logger.info(f"{websocket.remote_addr} - REQUEST - {session_id} - {json.dumps(asdict(request))}")
             await websocket.send_as(request, ClientRequest) # type: ignore
     finally:
         if task is not None:
