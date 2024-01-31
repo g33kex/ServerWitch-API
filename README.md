@@ -17,7 +17,7 @@ You can either deploy the API only, or use the provided docker compose file whic
 
 To build the docker image, run:
 ```
-docker built -d serverwitch-api .
+docker build -d serverwitch-api .
 ```
 
 Then, run it with:
