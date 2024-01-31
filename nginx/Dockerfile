@@ -21,6 +21,7 @@ COPY certbot.sh certbot-cron ./
 COPY entrypoint.sh nginx-letsencrypt
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY ip-whitelist.conf /etc/nginx/ip-whitelist.conf
+COPY real-ip.conf /etc/nginx/conf.d/
 
 RUN chmod +x nginx-letsencrypt && \
     chmod +x certbot.sh
