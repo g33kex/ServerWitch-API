@@ -38,9 +38,9 @@ Replace `example.com` and `email@example.com` with the domain name and email add
 
 ## Custom GPT
 
-If you deploy your own Server Witch API, you will also need your own custom GPT that uses your API server. You can make it using the [official GPT editor](https://chat.openai.com/gpts/editor). You can use the provided [prompt](GPT/serverwitch.txt) and [OpenAPI specification](GPT/openapi.yaml) for the Actions. In that file, replace the `url` field with your own domain name.
+If you deploy your own Server Witch API, you will also need your own custom GPT that uses your API server. You can make it using the [official GPT editor](https://chat.openai.com/gpts/editor). You can use the provided [prompt](GPT/serverwitch.txt) and [OpenAPI specification](GPT/openapi.yaml) for the Actions. In the OpenAPI file, replace the `url` field with your own domain name.
 
-Note that it is also possible to use any other LLM that can send requests based on the provided OpenAPI specification.
+Note that it is also possible to use any other LLM that can send requests based on the OpenAPI specification.
 
 ## Development
 
