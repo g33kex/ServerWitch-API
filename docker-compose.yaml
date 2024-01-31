@@ -1,0 +1,25 @@
+services:
+  serverwitch-api:
+    build: .
+    container_name: serverwitch-api
+    expose:
+      - "8000"
+    volumes:
+      - ./volumes/serverwitch/log:/var/log/serverwitch
+
+  nginx:
+    build:
+      context: ./nginx
+      args:
+        DOMAIN: ${DOMAIN_NAME:?Err DOMAIN_NAME is required}
+        EMAIL: ${EMAIL_ADDRESS:?Err EMAIL_ADDRESS is required}
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - serverwitch-api
+    volumes:
+      - ./volumes/nginx/log:/var/log/nginx
+      - ./volumes/nginx/letsencrypt:/etc/letsencrypt
+      - ./volumes/nginx/certbot:/var/www/certbot
