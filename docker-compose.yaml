@@ -4,6 +4,8 @@ services:
     container_name: serverwitch-api
     expose:
       - "8000"
+    volumes:
+      - volumes/serverwitch-api/log:/var/log
 
   nginx:
     build:
@@ -17,3 +19,7 @@ services:
       - "443:443"
     depends_on:
       - serverwitch-api
+    volumes:
+      - volumes/nginx/log:/var/log
+      - volumes/nginx/letsencrypt:/etc/letsencrypt
+      - volumes/nginx/certbot:/var/www/certbot
