@@ -1,0 +1,9 @@
+# Hypercorn configuration file
+
+# Server binding options
+bind = "0.0.0.0:8000" 
+workers = 1 
+
+# Logging configuration
+accesslog = "/var/log/serverwitch/access.log"
+logconfig = "logging.toml"

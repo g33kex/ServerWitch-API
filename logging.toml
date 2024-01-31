@@ -1,0 +1,33 @@
+[loggers]
+keys=root,serverwitch
+
+[handlers]
+keys=error,app
+
+[formatters]
+keys=default
+
+[logger_root]
+level=INFO
+handlers=error
+
+[logger_serverwitch]
+level=INFO
+handlers=app
+qualname=serverwitch_api
+propagate=0
+
+[handler_error]
+class=FileHandler
+level=INFO
+formatter=default
+args=('/var/log/serverwitch/error.log',)
+
+[handler_app]
+class=handlers.TimedRotatingFileHandler
+level=INFO
+formatter=default
+args=('/var/log/serverwitch/app.log', 'W0')
+
+[formatter_default]
+format=%(created)s - %(levelname)s - %(message)s

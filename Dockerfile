@@ -6,7 +6,7 @@ RUN pip install poetry
 
 # Copy source
 RUN mkdir -p /app
-COPY pyproject.toml poetry.toml README.md /app/
+COPY pyproject.toml poetry.toml README.md hypercorn.toml logging.toml /app/
 COPY src/ /app/src/
 
 # Build project
@@ -16,10 +16,11 @@ RUN poetry install
 # Base image
 FROM python:3.11.5-slim-bookworm as base
 
+RUN mkdir -p /var/log/serverwitch
 COPY --from=builder /app /app
 
 WORKDIR /app
 ENV PATH="/app/.venv/bin/:$PATH"
-CMD ["hypercorn", "--bind", "0.0.0.0:8000", "serverwitch_api:app"]
+CMD ["hypercorn", "--config", "hypercorn.toml", "serverwitch_api:app"]
 
 EXPOSE 8000

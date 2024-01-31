@@ -3,8 +3,8 @@ It describes the endpoints of the API."""
 from dataclasses import dataclass, asdict
 import importlib.metadata
 import secrets
-import asyncio
 import logging
+import asyncio
 import json
 from typing import Tuple
 
@@ -18,18 +18,17 @@ from serverwitch_api.broker import SessionBroker, SessionDoesNotExist, ClientReq
 Currently, ChatGPT will timeout after 45 seconds if it didn't receive a response.
 We want to timeout before that to provide it with more context about the reasons of the timeout."""
 TIMEOUT: int = 40
-"""Log Level. Setting log level to INFO will log every request."""
-LOG_LEVEL: int = logging.INFO
+"""Default log level"""
+LOG_LEVEL: int = logging.DEBUG
 """Who to trust with X-Forwarded-For Headers"""
 TRUSTED_HOSTS: list[str] = ["127.0.0.1"]
 
+# Create app
 app = Quart(__name__)
 QuartSchema(app)
 app.asgi_app = ProxyHeadersMiddleware(app.asgi_app, trusted_hosts=TRUSTED_HOSTS)
 
-FORMAT = "%(process)s %(thread)s: %(message)s"
 app.logger.setLevel(LOG_LEVEL)
-app.logger.handlers[0].setFormatter(logging.Formatter("[%(created)f] [%(levelname)s] %(message)s"))
 
 broker = SessionBroker()
 
