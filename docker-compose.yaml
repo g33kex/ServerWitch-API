@@ -5,7 +5,7 @@ services:
     expose:
       - "8000"
     volumes:
-      - volumes/serverwitch-api/log:/var/log
+      - ./volumes/serverwitch-api/log:/var/log/serverwitch-api
 
   nginx:
     build:
@@ -20,6 +20,6 @@ services:
     depends_on:
       - serverwitch-api
     volumes:
-      - volumes/nginx/log:/var/log
-      - volumes/nginx/letsencrypt:/etc/letsencrypt
-      - volumes/nginx/certbot:/var/www/certbot
+      - ./volumes/nginx/log:/var/log/nginx
+      - ./volumes/nginx/letsencrypt:/etc/letsencrypt
+      - ./volumes/nginx/certbot:/var/www/certbot
