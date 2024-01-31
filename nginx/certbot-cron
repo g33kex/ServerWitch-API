@@ -1,0 +1,1 @@
+0 */12 * * * /opt/certbot.sh >> /var/log/certbot-cron.log 2>&1
