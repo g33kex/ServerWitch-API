@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "serverwitch-api"
-version = "0.2.0"
+version = "0.1.1"
 description = ""
 authors = ["Vi Retault <g33kex@pm.me>", "Spiderweak <spiderweak@a-bernard.fr>"]
 readme = "README.md"
