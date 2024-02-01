@@ -21,7 +21,7 @@ TIMEOUT: int = 40
 """Default log level"""
 LOG_LEVEL: int = logging.DEBUG
 """Who to trust with X-Forwarded-For Headers"""
-TRUSTED_HOSTS: list[str] = ["127.0.0.1"]
+TRUSTED_HOSTS: list[str] = ["127.0.0.1", "172.18.0.3"]
 
 # Create app
 app = Quart(__name__)
@@ -108,7 +108,7 @@ to the client and receive the responses."""
 @app.websocket('/session')
 async def session_handler():
     session_id = secrets.token_hex()
-    app.logger.info(f"{websocket.remote_addr} - SESSION - {session_id}")
+    app.logger.info(f"{websocket.remote_addr} - NEW SESSION - {session_id}")
     await websocket.send_as(Session(session_id=session_id), Session) # type: ignore
 
     task = None
