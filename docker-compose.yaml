@@ -23,3 +23,4 @@ services:
       - ./volumes/nginx/log:/var/log/nginx
       - ./volumes/nginx/letsencrypt:/etc/letsencrypt
       - ./volumes/nginx/certbot:/var/www/certbot
+      - ./volumes/nginx/ssl-options:/etc/ssl-options/
