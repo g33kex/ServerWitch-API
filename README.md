@@ -58,3 +58,5 @@ poetry run start
 ## Contributing
 
 Contributions are highly appreciated. Please feel free to submit pull requests and bug reports. If you discover a security vulnerability in this software, contact me at g33kex[at]pm[dot]me.
+
+If you want to discuss with us, we're also on matrix [#serverwitch:beyond-undefined.fr](https://matrix.to/#/#serverwitch:beyond-undefined.fr)
